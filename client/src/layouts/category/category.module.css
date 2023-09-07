@@ -1,0 +1,17 @@
+.btn{
+    width: 100%;
+    background-color: brown;
+}
+.btn:hover{
+    background-color: darkolivegreen;
+}
+.btn1{
+    color: black;
+}
+.errors{
+    color: red;
+    font-size: small;
+  }
+  .imagePreview{
+    height: 303px;
+  }

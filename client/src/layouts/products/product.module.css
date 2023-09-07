@@ -1,0 +1,38 @@
+.errors{
+    color: red;
+    font-size: small;
+  }
+  .errors {
+    color: red;
+    font-size: 14px;
+    margin-top: 4px;
+  }
+  .category{
+    width: 100%;
+    border-color: lightsteelblue;
+    height: 39px;
+    border-radius: 5px;
+    color: black;
+    font-size: medium;
+}
+  
+.input{
+    font-size: medium;
+}
+.update{
+    width: 100%;
+    border-color: lightsteelblue;
+    height: 39px;
+    border-radius: 5px;
+    color: black;
+    font-size: medium;
+    background-color: rosybrown
+}
+.imagePreview{
+height: 303px;
+}
+.show{
+  text-transform: uppercase;
+  font-size: medium;
+  color: peru;
+}
