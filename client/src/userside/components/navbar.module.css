@@ -1,0 +1,54 @@
+.nav{
+    height: 130px;
+    background-color: rgb(255, 255, 255);
+    /* padding-top: 20px; */
+}
+#sec_nav{
+    height: 80px;
+    display: flex;
+    background-color: rgb(255, 255, 255);
+    /* padding: 20px; */
+}
+.global{
+    height: 28px;
+    width: 42px;
+    padding-inline: 10px;
+    margin-top: 20px;
+}
+.international{
+    margin-top: 20px;
+  
+}
+.sec1_nav{
+    display: flex;
+    padding-inline-start: 20px;
+    width: 45%;
+}
+.logo{
+    width: 150px;
+    align-items: center;
+}
+.sec2_nav{
+    display: flex;
+    padding-inline-start: 20px;
+    width: 30%;
+}
+.sec3_nav{
+    display: flex;
+    justify-content: end;
+    width: 20%;
+}
+/* .third_nav{
+    height: 150px;
+    background-color: aquamarine;
+} */
+.nav_item{
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+}
+.nav_items{
+    text-decoration: none;
+    color: black;
+    padding-inline: 15px;
+}

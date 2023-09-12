@@ -67,6 +67,7 @@ import CustomerSupport from "examples/Icons/CustomerSupport";
 import CreditCard from "examples/Icons/CreditCard";
 import Cube from "examples/Icons/Cube";
 
+import Home from 'userside/home'
 const routes = [
   {
     type: "collapse",
@@ -233,7 +234,16 @@ const routes = [
     component: <CategoryEdit />,
     noCollapse: true,
 
-  }
+  },
+  {
+    key: "home",
+    route: "/homepage",
+    component: <Home />,
+    noCollapse: true,
+
+  },
+
+
 ];
 
 export default routes;

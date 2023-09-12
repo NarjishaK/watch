@@ -17,5 +17,5 @@ const storage = multer.diskStorage({
 router.post('/bannercreate', upload.array("image"), BannerController.bannercreate);
 router.get('/bannerlist',BannerController.bannerlist);
 router.put('/bannerupdate/:id',upload.array("image"),BannerController.bannerupdate);
-
+router.delete('/bannerdelete/:id',BannerController.bannerdelete);
   module.exports = router;

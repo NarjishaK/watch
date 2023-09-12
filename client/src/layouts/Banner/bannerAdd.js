@@ -27,7 +27,7 @@ function bannerAdd() {
     const [title,setTitle]=useState('');
     const [subtitle1,setSubtitle1]=useState('');
     const [subtitle2,setSubtitle2]=useState('');
-    const [image,setImage]=useState('');
+    const [image,setImage]=useState([]);
     const[imagePreview,setImagePreview]=useState([]);
     const navigate =useNavigate('');
 
@@ -65,18 +65,17 @@ function bannerAdd() {
     }
 
     const handleImage = (e) => {
-        const selectedImages = Array.from(e.target.files);
-        setImage(selectedImages);
-    
-        const previewImages = [];
-        for (let i = 0; i < selectedImages.length; i++) {
-          const image = selectedImages[i];
-          const imageURL = URL.createObjectURL(image);
-          previewImages.push(imageURL);
-        }
-        setImagePreview(previewImages);
-      };
-
+      const selectedImages = Array.from(e.target.files);
+      setImage(selectedImages);
+  
+      const previewImages = [];
+      for (let i = 0; i < selectedImages.length; i++) {
+        const image = selectedImages[i];
+        const imageURL = URL.createObjectURL(image);
+        previewImages.push(imageURL);
+      }
+      setImagePreview(previewImages);
+    };
 
   return (
     <>
@@ -112,7 +111,7 @@ function bannerAdd() {
               />
             </SoftBox>
             <SoftBox mb={2}>
-              <SoftInput placeholder="image" type="file" name="image" accept="image/*" onChange={handleImage} multiple />
+              <input  type="file" name="image" accept="image/*" onChange={handleImage} multiple />
               {imagePreview.map((preview, index) => (
               <SoftBox mb={2} key={index}>
                 <img

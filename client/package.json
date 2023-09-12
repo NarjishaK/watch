@@ -33,6 +33,7 @@
     "react-dom": ">=16.8.0",
     "react-flatpickr": "3.10.13",
     "react-icons": "^4.10.1",
+    "react-owl-carousel": "^2.3.3",
     "react-paginate": "^8.2.0",
     "react-router-dom": "^6.11.1",
     "react-scripts": "5.0.1",

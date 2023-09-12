@@ -34,12 +34,18 @@ exports.bannerlist =asyncHandler(async(req,res)=>{
     }
 });
 
+
+
+
 exports.bannerupdate =asyncHandler(async(req,res)=>{
+    
     const {id}=req.params;
     const {subtitle1,subtitle2,title}=req.body;
-    const files = req.files;
-    const image = files.map((file) => file.filename);
+    // const files = req.files;
+    // const image = files.map((file) => file.filename);
+    const newImages = req.files.map((file) => file.filename);
     try{
+        
         const banner =await BannerModel.findById(id);
         if(!banner){
             return res.status(400).json({err:'banner not available'})
@@ -47,8 +53,28 @@ exports.bannerupdate =asyncHandler(async(req,res)=>{
         banner.title=title;
         banner.subtitle1=subtitle1;
         banner.subtitle2=subtitle2;
-        banner.image=image;
+        banner.image=newImages;
+
+        const bannerupdate=await banner.save()
+        res.json(bannerupdate)
+        console.log('iiiiiiiiiiiiii')
+        
     }catch(err){
         console.log(err);
+    }
+})
+
+exports.bannerdelete =asyncHandler(async(req,res)=>{
+    const {id}= req.params;
+    try{
+        const banner= await BannerModel.findById(id)
+        if (!banner) {
+            return res.status(404).json({ err: 'banner not found' });
+          }
+          await banner.deleteOne();
+          res.json({ message: 'banner deleted successfully' });
+    }catch(err){
+        console.log(err);
+        return res.status(500).json({ err: 'An error occurred in deleting banner' });
     }
 })

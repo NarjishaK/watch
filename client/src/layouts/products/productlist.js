@@ -43,7 +43,6 @@ function Products() {
       .catch((err) => {
         console.log(err)
       });
-
   }
 
   const handleDelete = async (id) => {
@@ -215,7 +214,6 @@ function Products() {
               </DialogContentText>
               <DialogContentText>
                 <strong className={styles.show}>Image:</strong><br/>
-                {/* <img src= {`http://localhost:8000/upload/${selectedProduct.imagePreview}`} className={styles.imagePreview}></img> */}
                 {imagePreview.map((preview, index) => (
                 <img
                   key={index}

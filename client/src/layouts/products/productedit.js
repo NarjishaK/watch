@@ -79,8 +79,6 @@ function productedit() {
                     previewImages.push(imageURL);
                   }
                   setImagePreview(previewImages);
-                  // setImage([image]);
-                  // setImagePreview([`http://localhost:8000/uploads/${image}`]);
                 } else {
                   setImage([]);
                   setImagePreview([]);
@@ -152,9 +150,7 @@ function productedit() {
         }
       }
 
-  // const handleImage = (e) => {
-  //   const selectedImage = e.target.files[0];
-  //   setImage(selectedImage);
+
     const handleImage = (e) => {
       const selectedImages =Array.from(e.target.files);
       console.log(selectedImages)
@@ -167,13 +163,7 @@ function productedit() {
           previewImages.push(imageURL);
         }
         setImagePreview(previewImages);
-//  const reader = new FileReader();
-    // reader.onload = (event) => {
-    //   setImagePreview(event.target.result);
-    //   setPreviousImagePreview('');
-    // };
-    // reader.readAsDataURL(selectedImage);
-   
+
   };
   return (
     <>
@@ -214,20 +204,7 @@ function productedit() {
                 className={styles.imagePreview}
                 />
               ))}
-              {/* {previousImagePreview.map((Preview,index)=>(
-                <img
-                key={index}
-                src={Preview}
-                alt="Selected"
-                className={styles.imagePreview}
-                />
-              ))} */}
-              {/* {imagePreview && (
-                <img src={imagePreview} alt="Previous" className={styles.imagePreview} />
-              )}
-              {previousImagePreview && (
-                <img src={`http://localhost:8000/upload/${previousImagePreview}`} alt="Selected" className={styles.imagePreview} />
-              )} */}
+         
               <SoftBox mb={2}>
                 <InputLabel ><p className={styles.input}>Category</p></InputLabel>
                 <select
