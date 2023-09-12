@@ -135,6 +135,7 @@ function Home() {
       {/* PRODUCTS */}
       <div className={styles.div1}>
         <p className={styles.cont1}>OUR SELECTION</p>
+        <p className={styles.cont1}>hellooo</p>
         <h2 className={styles.cont2}>MILLE MIGLIA WATCHES</h2>
         <br />
       </div>
