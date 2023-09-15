@@ -1,0 +1,13 @@
+.custom-prev{
+    position: absolute;
+    top: 200px !important;
+    border: none;
+    background-color: white
+}
+.custom-next{
+    position: absolute;
+    left: 1241px;
+    top: 200px;
+    border: none;
+    background-color: white
+}

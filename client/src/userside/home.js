@@ -1,7 +1,7 @@
 import Carousel from "react-bootstrap/Carousel";
-import img1 from "./images/frst-home.webp";
-import img2 from "./images/sec-home.webp";
-import img3 from "./images/third-home.jpeg";
+import img1 from "./images/s1.webp";
+import img2 from "./images/s2.webp";
+import img3 from "./images/s3.webp";
 import img4 from "./images/watch 1.webp";
 import styles from "./home.module.css";
 import img5 from "./images/watch2.webp";
@@ -57,7 +57,6 @@ function Home() {
       .then((response) => {
         setProducts(response.data);
         setShowProducts(1);
-        //  console.log(response.data);
       })
       .catch((err) => {
         console.log(err)
@@ -65,31 +64,14 @@ function Home() {
   }
 
 
-  // service  //
-  const [serviceImages, setServiceImages] = useState([]);
-
-  useEffect(() => {
-    //servicesData();
-  }, []);
-
-  const servicesData = async () => {
-    try {
-      const response = await fetch("http://localhost:7000/service");
-      const datas = await response.json();
-      setServiceImages(datas);
-      
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
   return (
     <>
     <Navbar/>
+   
       <Carousel>
         {banner.map((banners)=>(
         <Carousel.Item interval={1000} key={banners._id}>
-          <img className="d-block w-100" src={`http://localhost:8000/upload/${banners.image}`} alt="First slide" />
+          <img className="d-block w-100" src={`http://localhost:8000/upload/${banners.image[0]}`} alt="First slide" id={styles.banner} />
           <Carousel.Caption>
             <h2>{banners.title}</h2>
             <p className={styles.content}>{banners.subtitle1}</p>
@@ -99,6 +81,8 @@ function Home() {
       </Carousel>
 
       {/* Second part */}
+
+      <div className="container">
       <div className={styles.div1}>
         <p className={styles.cont1}>CHOPARD</p>
         <h2 className={styles.cont2}>THE ARTISAN OF EMOTIONS, SINCE 1860</h2>
@@ -135,7 +119,6 @@ function Home() {
       {/* PRODUCTS */}
       <div className={styles.div1}>
         <p className={styles.cont1}>OUR SELECTION</p>
-        <p className={styles.cont1}>hellooo</p>
         <h2 className={styles.cont2}>MILLE MIGLIA WATCHES</h2>
         <br />
       </div>
@@ -172,21 +155,41 @@ function Home() {
       </div>
       <div className="container">
         <Row>
-          {serviceImages.map((service) => (
-            <Col md={4} key={service._id}>
+         
+            <Col md={4}>
               <card>
                 <Card.Body>
                   <Card.Img
-                    src={`http://localhost:7000/${service.images}`}
+                    src={img1}
                   ></Card.Img>
-                  <Card.Title className={styles.c}>{service.title}</Card.Title>
+                  <Card.Title className={styles.c}>OUR BOUTIQUES</Card.Title>
+                </Card.Body>
+              </card>
+              </Col>
+              <Col md={4}>
+              <card>
+                <Card.Body>
+                  <Card.Img
+                    src={img2}
+                  ></Card.Img>
+                  <Card.Title className={styles.c}>PRODUCT CARE</Card.Title>
+                </Card.Body>
+              </card>
+              </Col>
+              <Col md={4}>
+              <card>
+                <Card.Body>
+                  <Card.Img
+                    src={img3}
+                  ></Card.Img>
+                  <Card.Title className={styles.c}>EXTEND YOUR WARRANTY</Card.Title>
                 </Card.Body>
               </card>
             </Col>
-          ))}
         </Row>
       </div>
       <hr/>
+      </div>
       <Footer/>
     </>
   );

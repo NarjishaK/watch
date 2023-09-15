@@ -94,7 +94,7 @@ function Products() {
     { name: 'productName', align: 'left' },
     { name: 'image', align: 'left' },
     { name: 'price', align: 'left' },
-    { name: 'description', align: 'left' },
+    { name: 'category', align: 'left' },
     { name: 'action', align: 'center' },
   ];
 
@@ -113,7 +113,7 @@ function Products() {
     ),
 
     price: product.price,
-    description: product.description,
+    category: product.category,
     action: (
       <SoftBox display="flex" justifyContent="center">
         <SoftButton

@@ -68,6 +68,10 @@ import CreditCard from "examples/Icons/CreditCard";
 import Cube from "examples/Icons/Cube";
 
 import Home from 'userside/home'
+import AllProduct from 'userside/mens'
+import AllWatch from 'userside/AllWatches'
+import Aboutpage from'userside/About'
+import Whishlist from 'userside/whishlist'
 const routes = [
   {
     type: "collapse",
@@ -239,6 +243,34 @@ const routes = [
     key: "home",
     route: "/homepage",
     component: <Home />,
+    noCollapse: true,
+
+  },
+  {
+    key: "allproduct",
+    route: "/allproduct/:id",
+    component: <AllProduct />,
+    noCollapse: true,
+
+  },
+  {
+    key: "allwatch",
+    route: "/allwatch",
+    component: <AllWatch />,
+    noCollapse: true,
+
+  },
+  {
+    key: "about",
+    route: "/about-product/:id",
+    component: <Aboutpage/>,
+    noCollapse: true,
+
+  },
+  {
+    key: "whishlist",
+    route: "/whishlist",
+    component: <Whishlist/>,
     noCollapse: true,
 
   },

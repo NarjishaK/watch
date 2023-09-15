@@ -57,7 +57,11 @@ export default function App() {
   const { pathname } = useLocation();
   var template ="Front"
   if(
-    pathname=='/homepage'
+    pathname=='/homepage' ||
+    (pathname.search('/allproduct')>-1)||
+    pathname=='/allwatch'||
+    (pathname.search('/about-product')>-1)||
+    pathname=='/whishlist'
   ){
     template="Front"
   }else{

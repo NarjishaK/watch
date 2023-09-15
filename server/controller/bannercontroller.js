@@ -53,7 +53,9 @@ exports.bannerupdate =asyncHandler(async(req,res)=>{
         banner.title=title;
         banner.subtitle1=subtitle1;
         banner.subtitle2=subtitle2;
+        if(newImages && newImages.length >0){
         banner.image=newImages;
+        }
 
         const bannerupdate=await banner.save()
         res.json(bannerupdate)

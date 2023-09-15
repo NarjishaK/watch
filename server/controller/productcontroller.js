@@ -55,6 +55,32 @@ exports.listcategory = asyncHandler(async (req, res) => {
     }
   });
 
+  exports.detailcategory =asyncHandler(async(req,res)=>{
+    const {id}=req.params;
+    try{
+        let catproducts =await CategoryModel.findById(id);
+        console.log(catproducts.category)
+        let products =await ProductModel.find({category: catproducts.category});
+        console.log(products)
+        res.json(products)
+    }catch(err){
+        console.log(err);
+        return res.status(500).json({err:'an error occured in listproduct'});
+    }
+  });
+
+  exports.productdetails =asyncHandler(async(req,res)=>{
+    const {id}=req.params;
+    try{
+        let products =await ProductModel.findById(id);
+        console.log(products)
+        res.json(products)
+    }catch(err){
+        console.log(err);
+        return res.status(500).json({err:'an error occured in product details'});
+    }
+  });
+
 
 
 exports.deleteProduct = asyncHandler(async (req, res) => {
@@ -106,8 +132,9 @@ exports.deleteProduct = asyncHandler(async (req, res) => {
       product.category=category;
       product.description=description;
       product.brand=brand;
-      product.image =image;
-      
+      if (files && files.length>0) {
+        product.image = image;
+      } 
       const updatedproduct =await product.save()
       res.json(updatedproduct)
     }catch(err){
