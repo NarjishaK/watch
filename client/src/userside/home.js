@@ -74,7 +74,7 @@ function Home() {
           <img className="d-block w-100" src={`http://localhost:8000/upload/${banners.image[0]}`} alt="First slide" id={styles.banner} />
           <Carousel.Caption>
             <h2>{banners.title}</h2>
-            <p className={styles.content}>{banners.subtitle1}</p>
+            <p className={styles.content1}>{banners.subtitle1}</p>
           </Carousel.Caption>
         </Carousel.Item>
         ))}

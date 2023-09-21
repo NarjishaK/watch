@@ -7,9 +7,10 @@ import { BsFilter } from "react-icons/bs";
 import { Card, CardGroup, Col, Row } from "react-bootstrap";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
-import {BiSolidCartAdd} from 'react-icons/bi'
-import {MdFavorite} from 'react-icons/md'
-import {BsEye} from 'react-icons/bs'
+import { BiSolidCartAdd } from "react-icons/bi";
+import { MdFavorite } from "react-icons/md";
+import { BsEye } from "react-icons/bs";
+import { FaRupeeSign } from "react-icons/fa";
 
 function MenWatch() {
   const [products, setProducts] = useState([]);
@@ -46,6 +47,48 @@ function MenWatch() {
 
   const handleMouseLeave = () => {
     setShowProductDetails(false);
+  };
+//whishlist
+  const handleSaveProduct = (products) => {
+    const savedProduct = {
+      id: products._id,
+      productname: products.productname,
+      price: products.price,
+      description: products.description,
+      image:`http://localhost:8000/upload/${products.image[0]}`,
+      category:products.category,
+    };
+
+    const existingSavedProducts = JSON.parse(localStorage.getItem("savedProducts")) || [];
+    const isProductAlreadySaved = existingSavedProducts.some(
+      (product) => product.id === savedProduct.id
+    );
+
+    if (!isProductAlreadySaved) {
+      const updatedSavedProducts = [...existingSavedProducts, savedProduct];
+      localStorage.setItem("savedProducts", JSON.stringify(updatedSavedProducts));
+    }
+  };
+//addcart
+  const handleAddcart = (products) => {
+    const savedCartProduct = {
+      id: products._id,
+      productname: products.productname,
+      price: products.price,
+      description: products.description,
+      image:`http://localhost:8000/upload/${products.image[0]}`,
+      category:products.category,
+    };
+
+    const existingAddcart = JSON.parse(localStorage.getItem("savedCartProduct")) || [];
+    const isProductAlreadyAdded= existingAddcart.some(
+      (product) => product.id === savedCartProduct.id
+    );
+
+    if (!isProductAlreadyAdded) {
+      const updatedAddcartProducts = [...existingAddcart, savedCartProduct];
+      localStorage.setItem("savedCartProduct", JSON.stringify(updatedAddcartProducts));
+    }
   };
 
   return (
@@ -112,19 +155,38 @@ function MenWatch() {
                   <Card.Img
                     src={`http://localhost:8000/upload/${product.image[0]}`}
                     alt={`Slide ${product.productname}`}
-                    // onClick={() => handleDiscover(product._id)}
                   />
-                  <Card.Title className={styles.titles}></Card.Title>
+                  <Card.Title className={styles.titles}>
+                    <p id={styles.div3}>
+                      <strong>
+                        <FaRupeeSign />.{product.price}
+                      </strong>
+                    </p>
+                  </Card.Title>
                 </Card.Body>
               </card>
               {showProductDetails && selectedProduct === product && (
                 <div className={styles.product_card}>
-                  <button className={styles.price_btn}><p className={styles.narjiii}>Rs.{product.price}</p>
-                  {/* <p id={styles.div3}>
-                      <button className={styles.contents} onClick={()=>handleDiscover(product._id)}>Discover</button>
-                    </p> */}
+                  <button className={styles.price_btn}>
                     <p id={styles.div3}>
-                      <button className={styles.whishlist} ><button className={styles.fav}><MdFavorite className={styles.global1}/></button><button className={styles.fav}><BiSolidCartAdd  className={styles.global2}/></button><button className={styles.fav}><BsEye className={styles.global3} onClick={()=>handleDiscover(product._id)}/></button></button>
+                      <button className={styles.whishlist}>
+                        <button className={styles.fav}>
+                          <MdFavorite
+                            className={styles.global1}
+                            onClick={() => handleSaveProduct(product)}
+                          />
+                        </button>
+                        <button className={styles.fav}>
+                          <BiSolidCartAdd className={styles.global2}
+                           onClick={() => handleAddcart(product)} />
+                        </button>
+                        <button className={styles.fav}>
+                          <BsEye
+                            className={styles.global3}
+                            onClick={() => handleDiscover(product._id)}
+                          />
+                        </button>
+                      </button>
                     </p>
                   </button>
                 </div>

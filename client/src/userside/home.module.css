@@ -1,6 +1,7 @@
-.content{
+.content1{
     text-decoration: underline;
     text-transform: uppercase;
+	color: white;
 }
 .div1{
     height: 230px;
@@ -119,6 +120,39 @@
     color:white;
 
 }
+.global1{
+    height: 20px;
+    width: 47px;
+    padding-inline: 10px;
+    color: #030303;
+}
+.global1:hover{
+    color: #e01212;
+}
+.global3{
+    height: 20px;
+    width: 47px;
+    padding-inline: 10px;
+    color: #030303;
+}
+
+.global2{
+    height: 22px;
+    width: 51px;
+    padding-inline: 10px;
+    color: #030303;
+}
+.global2:hover{
+    color: #2e7005;
+}
+.fav{
+    height: 42px;
+    border-width: 1px;
+    background-color: #fff;
+    margin-inline: 3px;
+    border-width: 1px;
+}
+
 
 /*------------------------------------------------------------------
 [Table of contents]

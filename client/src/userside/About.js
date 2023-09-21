@@ -87,6 +87,28 @@ function SingleProduct() {
     navigate(`/about-product/${id}`);
   };
 
+
+  const handleSaveProduct = () => {
+    const savedProduct = {
+      id: products._id,
+      productname: products.productname,
+      price: products.price,
+      description: products.description,
+      image:`http://localhost:8000/upload/${products.image}`,
+      category:products.category,
+    };
+  
+  
+    const existingSavedProducts = JSON.parse(localStorage.getItem("savedProducts")) || [];
+    const isProductAlreadySaved = existingSavedProducts.some((product) => product.id === savedProduct.id);
+  
+    if (!isProductAlreadySaved) {
+      const updatedSavedProducts = [...existingSavedProducts, savedProduct];
+        localStorage.setItem("savedProducts", JSON.stringify(updatedSavedProducts));
+    }
+  };
+  
+
   return (
     <>
       <div className="home-section">
@@ -217,7 +239,7 @@ function SingleProduct() {
                     {" "}
                     <i className="me-1 fa fa-shopping-basket" /> Add to cart{" "}
                   </a>
-                  <a href="#" className="btn  btn-light">
+                  <a href="#" className="btn  btn-light" onClick={handleSaveProduct}>
                     {" "}
                     <i className="me-1 fa fa-heart" /> Save{" "}
                   </a>

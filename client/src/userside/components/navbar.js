@@ -7,10 +7,12 @@ import logo from '../images/logo_1.png'
 import { useState } from 'react'
 import { useEffect } from 'react'
 import axios from 'axios'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 function navbar() {
   const [category ,setCategory]=useState([]);
+  const navigate = useNavigate();
+  
   useEffect(()=>{
     List();
   },[]);
@@ -25,6 +27,10 @@ function navbar() {
       console.log(err)
     }
   }
+  const handleFavorite = () => {
+    // Navigate to the wishlist page
+    navigate('/whishlist');
+  };
 
   return (
     <>
@@ -33,7 +39,7 @@ function navbar() {
             <div id={styles.sec_nav} className=' cl-sm-4 cl-md-4 cl-lg-4 '>
             <div className={styles.sec1_nav}><AiOutlineGlobal className={styles.global}/><p className={styles.international}>INTERNATIONAL</p></div>
             <div className={styles.sec2_nav}><img src={logo} className={styles.logo}></img></div>
-            <div className={styles.sec3_nav}><MdFavorite className={styles.global}/><BiSolidCartAdd className={styles.global1}/></div>
+            <div className={styles.sec3_nav}> <MdFavorite className={styles.global} onClick={handleFavorite} /><BiSolidCartAdd className={styles.global1}/></div>
             </div>
             <div id={styles.third_nav}>
               
