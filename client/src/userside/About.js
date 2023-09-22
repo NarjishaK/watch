@@ -5,7 +5,7 @@ import { AiFillStar } from "react-icons/ai";
 import styles from "./home.module.css";
 import axios from "axios";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { Card, CardGroup, Col, Nav, Row, Tab } from "react-bootstrap";
+import { Button, Card, CardGroup, Col, Modal, Nav, Row, Tab } from "react-bootstrap";
 import PerfectScrollbar from "react-perfect-scrollbar";
 import "react-perfect-scrollbar/dist/css/styles.css";
 
@@ -19,6 +19,8 @@ function SingleProduct() {
   const [similarproducts, setSimilarProducts] = useState([]);
   const [selectedProductCategory, setSelectedProductCategory] = useState("");
   const navigate = useNavigate();
+  const [showPopup, setShowPopup] = useState(false);
+const [selectedProduct, setSelectedProduct] = useState(null);
 
   //quantity of product
   const initialQuantity = localStorage.getItem("quantity") || 14;
@@ -82,11 +84,7 @@ function SingleProduct() {
     (similar) => similar.category === selectedProductCategory
   );
   const relatedProductsToDisplay = relatedProducts.slice(0, 4);
-
-  const handleDiscover = async (id) => {
-    navigate(`/about-product/${id}`);
-  };
-
+//
 
   const handleSaveProduct = () => {
     const savedProduct = {
@@ -94,7 +92,7 @@ function SingleProduct() {
       productname: products.productname,
       price: products.price,
       description: products.description,
-      image:`http://localhost:8000/upload/${products.image}`,
+      image:`http://localhost:8000/upload/${products.image[0]}`,
       category:products.category,
     };
   
@@ -108,7 +106,47 @@ function SingleProduct() {
     }
   };
   
+//handleAddcart
+const handleAddcart = () => {
+  const savedCartProduct = {
+    id: products._id,
+    productname: products.productname,
+    price: products.price,
+    description: products.description,
+    image:`http://localhost:8000/upload/${products.image[0]}`,
+    category:products.category,
+  };
 
+  const existingAddcart = JSON.parse(localStorage.getItem("savedCartProduct")) || [];
+  const isProductAlreadyAdded= existingAddcart.some(
+    (product) => product.id === savedCartProduct.id
+  );
+
+  if (!isProductAlreadyAdded) {
+    const updatedAddcartProducts = [...existingAddcart, savedCartProduct];
+    localStorage.setItem("savedCartProduct", JSON.stringify(updatedAddcartProducts));
+  }
+};
+
+
+
+
+const handleDiscover = (productId) => {
+  const product = relatedProductsToDisplay.find((item) => item._id === productId);
+  setSelectedProduct(product);
+  setShowPopup(true);
+};
+
+const handleShowMore = async (id) => {
+  navigate(`/about-product/${id}`);
+  setSelectedProduct(null);
+  setShowPopup(false);
+};
+
+const handleClosePopup = () => {
+  setSelectedProduct(null);
+  setShowPopup(false);
+};
   return (
     <>
       <div className="home-section">
@@ -235,7 +273,7 @@ function SingleProduct() {
                     {" "}
                     Buy now{" "}
                   </a>
-                  <a href="#" className="btn  btn-primary" style={{ marginRight: "10px" }}>
+                  <a href="#" className="btn  btn-primary" style={{ marginRight: "10px" }} onClick={ handleAddcart}>
                     {" "}
                     <i className="me-1 fa fa-shopping-basket" /> Add to cart{" "}
                   </a>
@@ -273,19 +311,19 @@ function SingleProduct() {
                             src={`http://localhost:8000/upload/${item.image[0]}`}
                           ></Card.Img>
                           <Card.Title className={styles.similar}>
-                            {item.productname}
+                            {/* {item.productname}
                             <br />
                             <br />
                             <strong className="price" style={{ placeItems: "center" }}>
                               {" "}
                               ${item.price}
-                            </strong>
+                            </strong> */}
                             <p id={styles.div3}>
                               <button
                                 className={styles.content}
                                 onClick={() => handleDiscover(item._id)}
                               >
-                                Discover
+                                VIEW
                               </button>
                             </p>
                           </Card.Title>
@@ -300,6 +338,32 @@ function SingleProduct() {
             <br />
           </div>
         </section>
+        {/* // */}
+        <Modal show={showPopup} onHide={handleClosePopup}>
+  <Modal.Header closeButton>
+    <Modal.Title>Product Details</Modal.Title>
+  </Modal.Header>
+  <Modal.Body>
+    {selectedProduct && (
+      <>
+        <h4>{selectedProduct.productname}</h4>
+        <p>Price: Rs.{selectedProduct.price}</p>
+        <p>Description: {selectedProduct.description}</p>
+        <p>Category:{selectedProduct.category}</p>
+        <p>Brand:{selectedProduct.brand}</p>
+       <img src={`http://localhost:8000/upload/${selectedProduct.image[0]}`} className={styles.popup_details}></img>
+      </>
+    )}
+  </Modal.Body>
+  <Modal.Footer>
+    <Button variant="secondary" onClick={() => handleShowMore(selectedProduct._id)}>
+      Show More
+    </Button>
+    <Button variant="secondary" onClick={handleClosePopup}>
+      Close
+    </Button>
+  </Modal.Footer>
+</Modal>
         <Footer />
       </div>
     </>

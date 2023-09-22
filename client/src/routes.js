@@ -72,6 +72,7 @@ import AllProduct from 'userside/mens'
 import AllWatch from 'userside/AllWatches'
 import Aboutpage from'userside/About'
 import Whishlist from 'userside/whishlist'
+import Addtocart from "userside/Addtocart";
 const routes = [
   {
     type: "collapse",
@@ -274,7 +275,12 @@ const routes = [
     noCollapse: true,
 
   },
-
+  {
+    key: "Addtocart",
+    route: "/addtocart",
+    component: <Addtocart/>,
+    noCollapse: true,
+  },
 
 ];
 

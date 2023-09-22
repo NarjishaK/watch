@@ -37,7 +37,7 @@ function navbar() {
     <div className='max-md:hidden'>
         <nav id='main-navbar' className={styles.nav} role='navigation'>
             <div id={styles.sec_nav} className=' cl-sm-4 cl-md-4 cl-lg-4 '>
-            <div className={styles.sec1_nav}><AiOutlineGlobal className={styles.global}/><p className={styles.international}>INTERNATIONAL</p></div>
+            <div className={styles.sec1_nav}><p className={styles.international}></p></div>
             <div className={styles.sec2_nav}><img src={logo} className={styles.logo}></img></div>
             <div className={styles.sec3_nav}> <MdFavorite className={styles.global} onClick={handleFavorite} /><BiSolidCartAdd className={styles.global1}/></div>
             </div>
@@ -53,7 +53,6 @@ function navbar() {
                       </li>
                     ))}
                     <li><a href='/allwatch' className={styles.nav_items}>WATCHES</a></li>
-                    {/* <li><a href='/about-product' className={styles.nav_items}>ABOUT</a></li> */}
                     <li><a href='/about-products'className={styles.nav_items}>CONTACT</a></li>
                 </ul>
                

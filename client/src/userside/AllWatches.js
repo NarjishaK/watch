@@ -95,30 +95,6 @@ function MenWatch() {
     <>
       <Navbar />
       <img src={img1} className={styles.img} />
-      <div className="container">
-        <ul className={styles.lists}>
-          <li>
-            <a href="/homepage" className={styles.list}>
-              HOME{" "}
-            </a>
-          </li>
-          <li>
-            <a href="#" className={styles.list}>
-              MENS WATCHES
-            </a>
-          </li>
-          <li>
-            <a href="/allwatch" className={styles.list}>
-              WATCHES
-            </a>
-          </li>
-          <li>
-            <a href="#" className={styles.list}>
-              ALPINE EAGLE WATCHES
-            </a>
-          </li>
-        </ul>
-      </div>
       <div className={styles.div1}>
         <p className={styles.cont1}>FROM EXPERTISE TO EMOTIONS</p>
         <h2 className={styles.cont2}>OUR MAINS DART</h2>
@@ -132,8 +108,8 @@ function MenWatch() {
           and two-tone combinations.
         </p>
         <p id={styles.div3}>
-          <button className={styles.btn}>DISCOVER MORE ABOUT THE WOMENS COLLECTION</button>
-          <br></br>
+          {/* <button className={styles.btn}>DISCOVER MORE ABOUT THE WOMENS COLLECTION</button>
+          <br></br> */}
           <button className={styles.btn2}>
             FILTER PRODUCTS <BsFilter />
           </button>

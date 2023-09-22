@@ -2,12 +2,30 @@
 import React from 'react'
 import styles from './whishlist.module.css'
 import Footer from './components/footer'
+import { Card, Col, Row } from 'react-bootstrap';
+import SoftButton from 'components/SoftButton';
+import { BiSolidCartAdd } from "react-icons/bi";
+import { MdFavorite } from "react-icons/md";
+import { BsEye } from "react-icons/bs";
+import { FaRupeeSign } from "react-icons/fa";
+import SoftBox from 'components/SoftBox';
+import Navbar from './components/navbar'
+import { useNavigate } from 'react-router-dom';
+
 function whishlist() {
   const savedProducts = JSON.parse(localStorage.getItem('savedProducts')) || [];
+  const navigate =useNavigate();
+
+  const handleDiscover = async (id) => {
+    navigate(`/about-product/${id}`);
+  };
+
   return (
-<div className="container padding-bottom-3x mb-2">
-  <div className="row">
-   {/* <aside className="user-info-wrapper">
+    <>
+    <Navbar/>
+    <div className="container padding-bottom-3x mb-2">
+      <div className="row">
+        {/* <aside className="user-info-wrapper">
         <div className="user-cover" style={{backgroundImage: 'url(https://bootdey.com/img/Content/bg1.jpg)'}}>
           <div className="info-label" data-toggle="tooltip" title data-original-title="You currently have 290 Reward Points to spend"><i className="icon-medal" />290 points</div>
         </div>
@@ -19,57 +37,55 @@ function whishlist() {
           </div>
         </div>
       </aside>  */}
-      <nav className={styles.list}>
-        <a className="list-group-item with-badge" href="#" id={styles.itemss}>Orders<span className="badge badge-primary badge-pill">6</span></a>
-        <a className="list-group-item" href="#" id={styles.itemss}>Profile</a>
-        <a className="list-group-item" href="#" id={styles.itemss}>Addresses</a>
-        <a className="list-group-item with-badge active" href="#" id={styles.itemss}>Wishlist<span className="badge badge-primary badge-pill">3</span></a>
-        <a className="list-group-item with-badge" href="#" id={styles.itemss}>My Tickets<span className="badge badge-primary badge-pill">4</span></a>
-      </nav>
-    <div className={styles.wishlist}>
-      <div className="padding-top-2x mt-2 hidden-lg-up" />
-      {/* Wishlist Table*/}
-      <div className="table-responsive wishlist-table margin-bottom-none">
-        <table className="table">
-          <thead>
-            <tr>
-              <th>Product Name</th>
-              <th className="text-center"><a className="btn btn-sm btn-outline-danger" href="#">Clear Wishlist</a></th>
-            </tr>
-          </thead>
-          <tbody>
-            {savedProducts.map((product)=>(
-            <tr key={product.id}>
-              <td>
-                <div className="product-item">
-                  <a className="product-thumb" href="#"><img src={product.image}  alt="Product"  className={styles.wishlistimage}/></a>
-                  <div className="product-info"style={{width: '50%'}}>
-                    <h4 className="product-title"><a href="#">{product.description}</a></h4>
-                    <div className="text-lg text-medium text-muted">Rs.{product.price}</div>
-                    <div>Availability:
-                      <div className="d-inline text-success">In Stock</div>
-                    </div>
-                  </div>
-                </div>
-              </td>
-              <td className="text-center"><a className="remove-from-cart" href="#" data-toggle="tooltip" title data-original-title="Remove item"><i className="icon-cross" /></a></td>
-            </tr>
-            ))}
-            <tr>
-            </tr>
-          </tbody>
-        </table>
+
+        <div className={styles.wishlist}>
+          <div className="padding-top-2x mt-2 hidden-lg-up" />
+          {/* Wishlist Table*/}
+          <div className="table-responsive wishlist-table margin-bottom-none">
+            <table className="table">
+              <thead>
+                <tr>
+                  <th>Product Name</th>
+                  <th className="text-center">
+                    <a className="btn btn-sm btn-outline-danger" href="#">
+                      Clear Wishlist
+                    </a>
+                  </th>
+                </tr>
+              </thead>
+            </table>
+
+            <Row>
+              {savedProducts.map((product) => (
+                <Col lg={3} mg={3} xs={12} key={product.id}>
+                  <Card>
+                    <SoftButton onMouseEnter={(e) => (e.target.style.color = "green")}>ADD TO CART</SoftButton>
+                    <Card.Body  onClick={() => handleDiscover(product.id)} className={styles.cards}>
+                      <Card.Img src={product.image}  />
+                      <Card.Title className={styles.titles}>Rs.{product.price}</Card.Title>
+                      <p style={{color:'green'}} className={styles.titles}>In stock</p>
+                    </Card.Body>
+                    <SoftButton
+                      style={{ color: "brown", }}
+                      id={styles.clear}
+                      onMouseEnter={(e) => (e.target.style.color = "white")}
+                      onMouseLeave={(e) => (e.target.style.color = "brown")}
+                    >
+                      REMOVE
+                    </SoftButton>
+                  </Card>
+                  <br />
+                </Col>
+              ))}
+            </Row>
+          </div>
+          <hr className="mb-4" />
+        </div>
       </div>
-      <hr className="mb-4" />
-      <div className="custom-control custom-checkbox">
-        <input className="custom-control-input" type="checkbox" id="inform_me" defaultChecked />
-        <label className="custom-control-label" htmlFor="inform_me">Inform me when item from my wishlist is available</label>
-      </div>
+      <Footer />
     </div>
-  </div>
-  <Footer/>
-</div>
-  )
+    </>
+  );
 }
 
 export default whishlist

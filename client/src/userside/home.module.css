@@ -152,8 +152,24 @@
     margin-inline: 3px;
     border-width: 1px;
 }
+.price_btn{
+	width: 60%;
+    height: 50px;
+	border: none;
+    background-color:transparent;
+	margin-inline: 20%;
+    margin-top: -60px ;
+	color:transparent;
 
-
+}
+.price_btn:hover{
+	background-color: rgb(246, 221, 191);
+	color: black;
+}
+.popup_details{
+	height: 295px;
+    margin-inline: 17%;
+}
 /*------------------------------------------------------------------
 [Table of contents]
 

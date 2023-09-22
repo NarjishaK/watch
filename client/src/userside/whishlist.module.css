@@ -359,6 +359,15 @@ a.list-group-item, .list-group-item-action {
     max-width: 30%;
 }
 
+.titles{
+    text-align: center;
+    font-size: small;
+}
+#clear:hover{
+    
+    background-color: #900303;
+}
+.cards:hover{
+    background-color: #f4eeee66;
 
-
-
+}

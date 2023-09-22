@@ -70,36 +70,35 @@ function MenWatch() {
     }
   };
 
+  //addcart
+  const handleAddcart = (products) => {
+    const savedCartProduct = {
+      id: products._id,
+      productname: products.productname,
+      price: products.price,
+      description: products.description,
+      image:`http://localhost:8000/upload/${products.image[0]}`,
+      category:products.category,
+    };
+
+    const existingAddcart = JSON.parse(localStorage.getItem("savedCartProduct")) || [];
+    const isProductAlreadyAdded= existingAddcart.some(
+      (product) => product.id === savedCartProduct.id
+    );
+
+    if (!isProductAlreadyAdded) {
+      const updatedAddcartProducts = [...existingAddcart, savedCartProduct];
+      localStorage.setItem("savedCartProduct", JSON.stringify(updatedAddcartProducts));
+    }
+  };
+
   return (
     <>
       <Navbar />
       {/* {banner.map((banners)=>( */}
       <img src={img1} className={styles.img} />
       {/* ))} */}
-      <div className="container">
-        <ul className={styles.lists}>
-          <li>
-            <a href="/homepage" className={styles.list}>
-              HOME{" "}
-            </a>
-          </li>
-          <li>
-            <a href="#" className={styles.list}>
-              MENS WATCHES
-            </a>
-          </li>
-          <li>
-            <a href="/allwatch" className={styles.list}>
-              WATCHES
-            </a>
-          </li>
-          <li>
-            <a href="#" className={styles.list}>
-              ALPINE EAGLE WATCHES
-            </a>
-          </li>
-        </ul>
-      </div>
+     
       <div className={styles.div1}>
         <p className={styles.cont1}>FROM EXPERTISE TO EMOTIONS</p>
         <h2 className={styles.cont2}>OUR MAINS DART</h2>
@@ -113,8 +112,6 @@ function MenWatch() {
           and two-tone combinations.
         </p>
         <p id={styles.div3}>
-          <button className={styles.btn}>DISCOVER MORE ABOUT THE WOMENS COLLECTION</button>
-          <br></br>
           <button className={styles.btn2}>
             FILTER PRODUCTS <BsFilter />
           </button>
@@ -156,7 +153,8 @@ function MenWatch() {
                            onClick={() => handleSaveProduct(product)} />
                         </button>
                         <button className={styles.fav}>
-                          <BiSolidCartAdd className={styles.global2} />
+                          <BiSolidCartAdd className={styles.global2}
+                          onClick={() => handleAddcart(product)}  />
                         </button>
                         <button className={styles.fav}>
                           <BsEye
