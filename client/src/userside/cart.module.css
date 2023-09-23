@@ -160,3 +160,9 @@ input:focus::-webkit-input-placeholder
     background-color: #eceaea4d;
     height: 35px;
 }
+#shipping{
+    width: 30%;
+    padding-top: 3%;
+    font-style: initial;
+    font-size: medium;
+}

@@ -62,7 +62,9 @@ export default function App() {
     pathname=='/allwatch'||
     (pathname.search('/about-product')>-1)||
     pathname=='/whishlist'||
-    pathname=='/addtocart'
+    pathname=='/addtocart'||
+    pathname=='/user-register'||
+    pathname=='/user-/user-signin'
   ){
     template="Front"
   }else{

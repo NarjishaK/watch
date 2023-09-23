@@ -73,6 +73,8 @@ import AllWatch from 'userside/AllWatches'
 import Aboutpage from'userside/About'
 import Whishlist from 'userside/whishlist'
 import Addtocart from "userside/Addtocart";
+import UserSignup from "userside/usersignup"
+import UserReg from "userside/userReg";
 const routes = [
   {
     type: "collapse",
@@ -279,6 +281,18 @@ const routes = [
     key: "Addtocart",
     route: "/addtocart",
     component: <Addtocart/>,
+    noCollapse: true,
+  },
+  {
+    key: "user-signin",
+    route: "/user-signin",
+    component: <UserSignup/>,
+    noCollapse: true,
+  },
+  {
+    key: "user-register",
+    route: "/user-register",
+    component: <UserReg/>,
     noCollapse: true,
   },
 

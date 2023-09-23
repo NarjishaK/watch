@@ -28,9 +28,11 @@ function navbar() {
     }
   }
   const handleFavorite = () => {
-    // Navigate to the wishlist page
     navigate('/whishlist');
   };
+  const handleCart =()=>{
+    navigate ('/addtocart')
+  }
 
   return (
     <>
@@ -39,7 +41,7 @@ function navbar() {
             <div id={styles.sec_nav} className=' cl-sm-4 cl-md-4 cl-lg-4 '>
             <div className={styles.sec1_nav}><p className={styles.international}></p></div>
             <div className={styles.sec2_nav}><img src={logo} className={styles.logo}></img></div>
-            <div className={styles.sec3_nav}> <MdFavorite className={styles.global} onClick={handleFavorite} /><BiSolidCartAdd className={styles.global1}/></div>
+            <div className={styles.sec3_nav}> <MdFavorite className={styles.global} onClick={handleFavorite} /><BiSolidCartAdd className={styles.global1} onClick={handleCart}/></div>
             </div>
             <div id={styles.third_nav}>
               

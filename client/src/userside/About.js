@@ -233,7 +233,12 @@ const handleClosePopup = () => {
                         <button
                           className="btn btn-icon btn-light"
                           type="button"
-                          onClick={() => setQuantity(quantity - 1)} // Decrease quantity
+                          style={{height:'37px'}}
+                          onClick={() => {
+                            if (quantity > 0) {
+                              setQuantity(quantity - 1);
+                            }
+                          }}
                         >
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -254,6 +259,7 @@ const handleClosePopup = () => {
                         <button
                           className="btn btn-icon btn-light"
                           type="button"
+                          style={{height:'37px'}}
                           onClick={() => setQuantity(quantity + 1)} // Increase quantity
                         >
                           <svg
