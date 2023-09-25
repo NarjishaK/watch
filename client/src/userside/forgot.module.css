@@ -1,0 +1,32 @@
+.div {
+    display: flex;
+    margin-top: 100px;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 500px;
+
+}
+.div1{
+    width: 300px;
+     height:400px;
+     display:flex;
+     margin-left:40px;
+     flex-direction:column;
+     justify-content: center;
+     box-shadow:rgba(0, 0, 0, 0.35) 0px 5px 15px;
+     border-radius:10px;
+     align-items:center;
+}
+.invalidd {
+    margin-top: -16px;
+    color: red;
+    position: relative;
+    right: 40px;
+    font-size: 11px;
+}
+.div2{
+   display: flex; 
+   justify-content: center;
+   align-items: center;
+}

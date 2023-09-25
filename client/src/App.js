@@ -64,7 +64,12 @@ export default function App() {
     pathname=='/whishlist'||
     pathname=='/addtocart'||
     pathname=='/user-register'||
-    pathname=='/user-/user-signin'
+    pathname=='/user-signin'||
+    pathname=='/forgot'||
+    (pathname.search('/otp')>-1)||
+    pathname=='/profile-user'||
+    (pathname.search('/profile-editing')>-1)
+
   ){
     template="Front"
   }else{

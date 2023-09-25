@@ -2,7 +2,8 @@
     position: absolute;
     top: 200px !important;
     border: none;
-    background-color: white
+    background-color: white;
+    margin-left: -610px;
 }
 .custom-next{
     position: absolute;

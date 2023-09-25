@@ -74,21 +74,6 @@ exports.createadmin = asyncHandler(async(req,res)=>{
 })
 
 
-
-// exports.adminedit =asyncHandler(async(req,res)=>{
-//   const {id} = req.params;
-//   console.log("Received ID:", id);
-//   try{
-//     const admin = await AdminLog.findById(id);
-//     if(!admin){
-//      return req.status(404).json({error:'admin not found'})
-//     }
-//     res.json(admin)
-//   }catch(err){
-//     console.log(err)
-//     return res.status(500).json({err:'an error occured'})
-//   }
-// })
 exports.adminedit = asyncHandler(async (req, res) => {
   const { id } = req.params;
   try {

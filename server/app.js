@@ -15,6 +15,7 @@ var adminRouter =  require('./routes/admin');
 var categoryRouter = require('./routes/category');
 var productRouter =require('./routes/product')
 var bannerRouter =require('./routes/banner')
+var userRouter =require('./routes/user')
 
 var app = express();
 connectDB()
@@ -40,6 +41,7 @@ app.use('/admin',adminRouter);
 app.use('/category',categoryRouter);
 app.use('/product',productRouter);
 app.use('/banner',bannerRouter);
+app.use ('/user',userRouter);
 app.use(bodyparser.json({limit: '500mb'}));//increse the payload size
 app.use(bodyparser.urlencoded({extended:true,limit: '500mb'}));
 

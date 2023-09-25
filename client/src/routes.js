@@ -75,6 +75,10 @@ import Whishlist from 'userside/whishlist'
 import Addtocart from "userside/Addtocart";
 import UserSignup from "userside/usersignup"
 import UserReg from "userside/userReg";
+import Forgot from "userside/forgot";
+import Otp from "userside/otp";
+import UserProfile from "userside/userProfile";
+import ProfileEdit from "userside/profileEdit";
 const routes = [
   {
     type: "collapse",
@@ -293,6 +297,30 @@ const routes = [
     key: "user-register",
     route: "/user-register",
     component: <UserReg/>,
+    noCollapse: true,
+  },
+  {
+    key: "forgot",
+    route: "/forgot",
+    component: <Forgot/>,
+    noCollapse: true,
+  },
+  {
+    key: "otp",
+    route: "/otp/:id",
+    component: <Otp/>,
+    noCollapse: true,
+  },
+  {
+    key: "profile",
+    route: "/profile-user",
+    component: <UserProfile/>,
+    noCollapse: true,
+  },
+  {
+    key: "profile-editing",
+    route: "/profile-editing'",
+    component: <ProfileEdit/>,
     noCollapse: true,
   },
 
