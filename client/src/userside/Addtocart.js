@@ -36,11 +36,11 @@ function Addtocart() {
   };
 
   //clear all product
-  // const handleRemove = (productId) => {
-  //   const updatedProducts = savedCartProducts.filter(product => product.id !== productId);
-  //   localStorage.setItem('savedCartProduct', JSON.stringify(updatedProducts));
-  //   setsavedCartProducts(updatedProducts); // Update the state
-  // };
+  const handleRemo = () => {
+    const updatedProducts = savedCartProducts.filter(product => product.id !== productId);
+    localStorage.setItem('savedCartProduct', JSON.stringify(updatedProducts));
+    setsavedCartProducts(updatedProducts); // Update the state
+  };
   return (
     <div>
       <Navbar />
@@ -57,6 +57,7 @@ function Addtocart() {
                     </h4>
                   </div>
                   <div className="col align-self-center text-right text-muted">3 items</div>
+                  <button className={styles.clear} onClick={handleRemo}>clear</button>
                 </div>
               </div>
               <div className="row border-top border-bottom">

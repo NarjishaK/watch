@@ -166,3 +166,8 @@ input:focus::-webkit-input-placeholder
     font-style: initial;
     font-size: medium;
 }
+.clear{
+    margin-left: 11px;
+    border: none;
+    background-color: antiquewhite;
+}

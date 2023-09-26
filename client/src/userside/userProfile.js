@@ -2,11 +2,17 @@ import React, { useEffect, useState } from 'react'
 import styles from './profile.module.css'
 import Navbar from './components/navbar'
 import Footrer from './components/footer'
+import { Link, useNavigate } from 'react-router-dom';
 
 function userProfile() {
     
     const userpage =JSON.parse(localStorage.getItem('userpage')) || [];
     console.log(userpage)
+    const navigate =useNavigate();
+    
+    // const handleEdit=()=>{
+    //     navigate ('/profile-editing/:id')
+    // }
    
 
   return (
@@ -32,33 +38,18 @@ function userProfile() {
                 {userpage.city} ,{userpage.country}
               </span>{" "}
             </div>{" "}
-            {/* <div className="gap-3 mt-3 icons d-flex flex-row justify-content-center align-items-center">
-              {" "}
-              <span>
-                <i className="fa fa-twitter" />
-              </span>{" "}
-              <span>
-                <i className="fa fa-facebook-f" />
-              </span>{" "}
-              <span>
-                <i className="fa fa-instagram" />
-              </span>{" "}
-              <span>
-                <i className="fa fa-linkedin" />
-              </span>{" "}
-            </div>{" "} */}
             <div className=" px-2 rounded mt-4 date ">
               {" "}
               <span className="join">{userpage.dob}</span>{" "}
             </div>{" "}
             <div className=" px-2 rounded mt-4 date ">
               {" "}
-              <span className="join">{userpage.userphone}</span>{" "}
+              <span className="join">{userpage.userphone}</span>{" "}<br/>
+              <span className="join">{userpage.useremail}</span>{" "}
             </div>{" "}
-            
             <div className=" d-flex mt-2">
               {" "}
-              <button className={styles.button}>Edit Profile</button>{" "}
+              <button className={styles.button} > <Link to={`/profile-editing/${userpage.id}`} >Edit Profile</Link></button>{" "}
             </div>{" "}
           </div>{" "}
         </div>

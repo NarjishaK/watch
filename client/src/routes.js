@@ -319,7 +319,7 @@ const routes = [
   },
   {
     key: "profile-editing",
-    route: "/profile-editing'",
+    route: "/profile-editing/:id",
     component: <ProfileEdit/>,
     noCollapse: true,
   },

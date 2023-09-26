@@ -6,9 +6,7 @@ import { Card, Col, Row } from 'react-bootstrap';
 import SoftButton from 'components/SoftButton';
 import { BiSolidCartAdd } from "react-icons/bi";
 import { MdFavorite } from "react-icons/md";
-import { BsEye } from "react-icons/bs";
 import { FaRupeeSign } from "react-icons/fa";
-import SoftBox from 'components/SoftBox';
 import Navbar from './components/navbar'
 import { useNavigate } from 'react-router-dom';
 
@@ -36,7 +34,7 @@ function whishlist() {
   //addcart
   const handleAddcart = (product) => {
     const savedCartProduct = {
-      id: product._id,
+      id: product.id,
       productname: product.productname,
       price: product.price,
       description: product.description,
@@ -54,24 +52,12 @@ function whishlist() {
       localStorage.setItem("savedCartProduct", JSON.stringify(updatedAddcartProducts));
     }
   };
+  
   return (
     <>
     <Navbar/>
     <div className="container padding-bottom-3x mb-2">
       <div className="row">
-        {/* <aside className="user-info-wrapper">
-        <div className="user-cover" style={{backgroundImage: 'url(https://bootdey.com/img/Content/bg1.jpg)'}}>
-          <div className="info-label" data-toggle="tooltip" title data-original-title="You currently have 290 Reward Points to spend"><i className="icon-medal" />290 points</div>
-        </div>
-        <div className="user-info">
-          <div className="user-avatar">
-            <a className="edit-avatar" href="#" /><img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="User" /></div>
-          <div className="user-data">
-            <h4>Daniel Adams</h4><span>Joined February 06, 2017</span>
-          </div>
-        </div>
-      </aside>  */}
-
         <div className={styles.wishlist}>
           <div className="padding-top-2x mt-2 hidden-lg-up" />
           {/* Wishlist Table*/}

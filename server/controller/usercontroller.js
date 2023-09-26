@@ -2,7 +2,8 @@ const asyncHandler = require("express-async-handler");
 const UserList = require('../models/usersModel');
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
-
+const nodemailer =require('nodemailer')
+const OtpModal =require('../models/otpmodel')
 
 exports.createuser = asyncHandler(async(req,res)=>{
     const {username,userphone,useremail,password,address,country,dob,city,pincode}= req.body;
@@ -56,7 +57,8 @@ exports.createuser = asyncHandler(async(req,res)=>{
           dob:user.dob,
           city:user.city,
           pincode:user.pincode,
-          image:user.image
+          image:user.image,
+          useremail:user.useremail
   
         }
       // const token = jwt.sign({ email: admin.email }, 'myjwtsecretkey');
@@ -111,3 +113,48 @@ exports.userediting =asyncHandler(async(req,res)=>{
     return res.status(500).json({ err: 'an error occurred' });
   }
 })
+
+exports.getotp=asyncHandler(async(req,res)=>{
+  const {useremail} =req.body;
+  try{
+    const user =await UserList.findOne({useremail:useremail})
+    if(user){
+      const formattedEmail=user.useremail;
+      let digits= '0123456789';
+      let OTP='';
+      for(i=0;i<4;i++){
+        OTP+=digits[Math.floor(Math.random()*10)]
+      }
+      const currentTimestamp =Date.now();
+      
+      const transporter =nodemailer.createTransport({
+        service:'Gmail',
+        host:'smpt.gmail.com',
+        auth:{
+          user:'navaskuniyil6@gmail.com',
+          pass:'wlhqjzsuoqsnztnf'
+        },
+      });
+      
+      const info= await transporter.sendMail({
+        from:'"Chopard"<navaskuniyil6@gmail.com>',
+        to:formattedEmail,
+        subject:'OTP verification',
+        html:`<strong>Chopard:</strpong>Use<strong>${OTP}</strong>to rest your password .do not give the code to anyone`,
+      });
+      
+      const saveOTP = await OtpModal.create({
+        otp:OTP,
+        timestamp:currentTimestamp,
+      });
+      console.log('OTP instance created:',saveOTP,info);
+      res.json({message:'OTP send successfully'});
+    }else{
+      res.status(404).json({err:'user not found'});
+    }
+  }catch(err){
+    console.log(err)
+  }
+})
+
+

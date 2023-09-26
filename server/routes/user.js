@@ -2,6 +2,7 @@ var express =require('express');
 var router =express.Router();
 const UserController = require('../controller/usercontroller');
 const UserList =require('../models/usersModel');
+const OtpController =require('../controller/otpcontroller');
 
 const multer = require("multer");
 
@@ -20,5 +21,6 @@ const storage = multer.diskStorage({
   router.post('/usersignin',UserController.usersignin);
   router.get('/userediting/:id',UserController.userediting);
   router.post('/forgotpassword',UserController.forgotpassword);
-
+  router.post('/getotp',UserController.getotp)
+  router.post('/checkOTP',OtpController.checkOTP)
   module.exports= router;

@@ -11,6 +11,8 @@ import { FaRupeeSign } from "react-icons/fa";
 import { BiSolidCartAdd } from "react-icons/bi";
 import { MdFavorite } from "react-icons/md";
 import { BsEye } from "react-icons/bs";
+import { Style } from "@mui/icons-material";
+import fav from './images/fav.jpg'
 
 function MenWatch() {
   const { id } = useParams();
@@ -18,6 +20,10 @@ function MenWatch() {
   const [showProductDetails, setShowProductDetails] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
   const navigate = useNavigate();
+  const [showPopup, setShowPopup] = useState(false);
+  const [text,setText] = useState('')
+  // const [red, setRed] = useState(false);
+
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -48,8 +54,19 @@ function MenWatch() {
   };
 
   //whishlist
+  
 
   const handleSaveProduct = (products) => {
+
+
+    setText('item added to wishlist')
+    setTimeout(()=>{
+      setText('')
+    },3000)
+
+    // setRed(true);
+    
+
     const savedProduct = {
       id: products._id,
       productname: products.productname,
@@ -62,6 +79,7 @@ function MenWatch() {
     const existingSavedProducts = JSON.parse(localStorage.getItem("savedProducts")) || [];
     const isProductAlreadySaved = existingSavedProducts.some(
       (product) => product.id === savedProduct.id
+    
     );
 
     if (!isProductAlreadySaved) {
@@ -89,6 +107,7 @@ function MenWatch() {
     if (!isProductAlreadyAdded) {
       const updatedAddcartProducts = [...existingAddcart, savedCartProduct];
       localStorage.setItem("savedCartProduct", JSON.stringify(updatedAddcartProducts));
+      
     }
   };
 
@@ -137,7 +156,7 @@ function MenWatch() {
                   <Card.Title className={styles.titles}>
                     <p id={styles.div3}>
                       <strong>
-                        <FaRupeeSign />.{product.price}
+                        <FaRupeeSign />{product.price}
                       </strong>
                     </p>
                   </Card.Title>
@@ -150,10 +169,12 @@ function MenWatch() {
                       <button className={styles.whishlist}>
                         <button className={styles.fav}>
                           <MdFavorite className={styles.global1}
+                          //  style={{ color: red ? "red" : "inherit" }}
                            onClick={() => handleSaveProduct(product)} />
                         </button>
                         <button className={styles.fav}>
-                          <BiSolidCartAdd className={styles.global2}
+                          <BiSolidCartAdd  className={styles.global2}
+                          
                           onClick={() => handleAddcart(product)}  />
                         </button>
                         <button className={styles.fav}>
@@ -164,6 +185,7 @@ function MenWatch() {
                         </button>
                       </button>
                     </p>
+                    <p style={{color:'green',fontSize:'10px'}}>{text}</p>
                   </button>
                 </div>
               )}
@@ -175,21 +197,6 @@ function MenWatch() {
       <p id={styles.div3}>
         <button className={styles.btn3}>SHOW MORE PRODUCTS</button>
       </p>
-      {/* <div className={styles.div1}>
-        <h1 className={styles.cont2}>CHOPARD ON INSTAGRAM</h1>
-        <br />
-      </div>
-      <div className="container" id={styles.div2}>
-        <p>
-          Discover the Maisons finest creations through our audiences lens and
-          become part of our social world by adding #MyChopard to your Instagram
-          posts.
-        </p>
-        <p id={styles.div3}>
-          <button className={styles.btn4}>FOLLOW US</button>
-        </p>
-      </div> */}
-
       <Footer />
     </>
   );
