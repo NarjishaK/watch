@@ -79,6 +79,7 @@ import Forgot from "userside/forgot";
 import Otp from "userside/otp";
 import UserProfile from "userside/userProfile";
 import ProfileEdit from "userside/profileEdit";
+import Shipping from "userside/shipping"
 const routes = [
   {
     type: "collapse",
@@ -321,6 +322,12 @@ const routes = [
     key: "profile-editing",
     route: "/profile-editing/:id",
     component: <ProfileEdit/>,
+    noCollapse: true,
+  },
+  {
+    key: "shipping",
+    route: "/shipping",
+    component: <Shipping/>,
     noCollapse: true,
   },
 

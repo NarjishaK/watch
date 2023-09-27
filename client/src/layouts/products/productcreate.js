@@ -34,6 +34,7 @@ function productcreate() {
     const[price,setPrice]=useState('');
     const[description,setDescription]=useState('');
     const[image,setImage]=useState('');
+    const[offerprice,setOfferprice]=useState('');
     const [validationErrors, setValidationErrors] = useState({});
     const[imagePreview,setImagePreview]=useState([]);
     const navigate = useNavigate("");
@@ -60,6 +61,9 @@ function productcreate() {
         if (!description) {
           newValidationErrors.description = "description is required";
         }
+        if (!offerprice) {
+          newValidationErrors.offerprice = "offerprice is required";
+        }
            
         if (Object.keys(newValidationErrors).length > 0) {
           console.log("Validation errors:", newValidationErrors);
@@ -76,6 +80,7 @@ function productcreate() {
           formData.append ('brand',brand)
           formData.append ('description',description)
           formData.append ('price',price)
+          formData.append ('offerprice',offerprice)
           for( let i=0;i<image.length ;i++){
           formData.append ('image',image[i])
           }
@@ -209,6 +214,14 @@ function productcreate() {
                 onChange={(e) => setPrice(e.target.value)}
               />
               {validationErrors.price && <p className={styles.errors}>{validationErrors.price}</p>}
+              </SoftBox>
+              <SoftBox mb={2}>
+              <SoftInput
+                placeholder="offerprice"
+                value={offerprice}
+                onChange={(e) => setOfferprice(e.target.value)}
+              />
+              {validationErrors.offerprice && <p className={styles.errors}>{validationErrors.offerprice}</p>}
               </SoftBox>
               <SoftBox mb={2}>
               <SoftInput

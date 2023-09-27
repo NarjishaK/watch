@@ -68,7 +68,8 @@ export default function App() {
     pathname=='/forgot'||
     (pathname.search('/otp')>-1)||
     pathname=='/profile-user'||
-    (pathname.search('/profile-editing')>-1)
+    (pathname.search('/profile-editing')>-1)||
+    pathname=='/shipping'
 
   ){
     template="Front"

@@ -12,9 +12,11 @@ import { MdFavorite } from "react-icons/md";
 import { BsEye } from "react-icons/bs";
 import { FaRupeeSign } from "react-icons/fa";
 
+
 function MenWatch() {
   const [products, setProducts] = useState([]);
   const navigate = useNavigate();
+  const[text,setText]=useState('');
 
   const [showProductDetails, setShowProductDetails] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
@@ -50,6 +52,10 @@ function MenWatch() {
   };
 //whishlist
   const handleSaveProduct = (products) => {
+    setText('item added to savecart')
+    setTimeout(()=>{
+      setText('')
+    },3000)
     const savedProduct = {
       id: products._id,
       productname: products.productname,
@@ -71,6 +77,13 @@ function MenWatch() {
   };
 //addcart
   const handleAddcart = (products) => {
+
+    setText('item added to Cart')
+      setTimeout(()=>{
+        setText('')
+      },3000)
+  
+    
     const savedCartProduct = {
       id: products._id,
       productname: products.productname,
@@ -78,6 +91,7 @@ function MenWatch() {
       description: products.description,
       image:`http://localhost:8000/upload/${products.image[0]}`,
       category:products.category,
+      quantity: 1,
     };
 
     const existingAddcart = JSON.parse(localStorage.getItem("savedCartProduct")) || [];
@@ -164,6 +178,7 @@ function MenWatch() {
                         </button>
                       </button>
                     </p>
+                    <p style={{color:'green',fontSize:'10px'}}>{text}</p>
                   </button>
                 </div>
               )}

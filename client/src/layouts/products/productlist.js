@@ -96,6 +96,7 @@ function Products() {
     { name: 'price', align: 'left' },
     { name: 'category', align: 'left' },
     { name: 'action', align: 'center' },
+    // { name: 'offerprice', align: 'center' },
   ];
 
   const rows = products.map((product) => ({
@@ -113,6 +114,7 @@ function Products() {
     ),
 
     price: product.price,
+    // offerprice:product.offerprice,
     category: product.category,
     action: (
       <SoftBox display="flex" justifyContent="center">
@@ -202,6 +204,9 @@ function Products() {
               </DialogContentText>
               <DialogContentText>
                 <strong className={styles.show}>Price:</strong> {selectedProduct.price}
+              </DialogContentText>
+              <DialogContentText>
+                <strong className={styles.show}>offerprice:</strong> {selectedProduct.offerprice}
               </DialogContentText>
               <DialogContentText>
                 <strong className={styles.show}>Description:</strong> {selectedProduct.description}

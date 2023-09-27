@@ -66,7 +66,6 @@ function MenWatch() {
 
     // setRed(true);
     
-
     const savedProduct = {
       id: products._id,
       productname: products.productname,
@@ -90,6 +89,11 @@ function MenWatch() {
 
   //addcart
   const handleAddcart = (products) => {
+    setText('item added to Cart')
+    setTimeout(()=>{
+      setText('')
+    },3000)
+
     const savedCartProduct = {
       id: products._id,
       productname: products.productname,
@@ -97,6 +101,7 @@ function MenWatch() {
       description: products.description,
       image:`http://localhost:8000/upload/${products.image[0]}`,
       category:products.category,
+      quantity: 1,
     };
 
     const existingAddcart = JSON.parse(localStorage.getItem("savedCartProduct")) || [];
@@ -174,7 +179,6 @@ function MenWatch() {
                         </button>
                         <button className={styles.fav}>
                           <BiSolidCartAdd  className={styles.global2}
-                          
                           onClick={() => handleAddcart(product)}  />
                         </button>
                         <button className={styles.fav}>

@@ -34,6 +34,7 @@ function productedit() {
     const[price,setPrice]=useState('');
     const[description,setDescription]=useState('');
     const[image,setImage]=useState('');
+    const[offerprice,setOfferprice]=useState('');
     // const [validationErrors, setValidationErrors] = useState({});
     const {id}= useParams();
     const navigate =useNavigate();
@@ -69,6 +70,7 @@ function productedit() {
                 setBrand(products.brand);
                 setDescription(products.description);
                 setPrice(products.price);
+                setOfferprice(products.offerprice);
                 const image= products.image;
                 if (image) {
                   setImage([image]);
@@ -113,6 +115,9 @@ function productedit() {
     if (!description) {
       validationErrors.description = "description is required";
     }
+    if (!offerprice) {
+      validationErrors.offerprice = "offerprice is required";
+    }
   
     if (Object.keys(validationErrors).length > 0) {
       console.log("Validation errors:", validationErrors);
@@ -131,9 +136,8 @@ function productedit() {
         formData.append ('brand',brand)
         formData.append ('description',description)
         formData.append ('price',price)
+        formData.append ('offerprice',offerprice)
         
-
-
         try{
           const response =await axios.put(`http://localhost:8000/product/updateproduct/${id}`,
           formData,
@@ -229,6 +233,14 @@ function productedit() {
                 placeholder="Price"
                 value={price}
                 onChange={(e) => setPrice(e.target.value)}
+              />
+                {invalid.price && <p className={styles.errors}>{invalid.price}</p>}
+              </SoftBox>
+              <SoftBox mb={2}>
+              <SoftInput
+                placeholder="offerprice"
+                value={offerprice}
+                onChange={(e) => setOfferprice(e.target.value)}
               />
                 {invalid.price && <p className={styles.errors}>{invalid.price}</p>}
               </SoftBox>

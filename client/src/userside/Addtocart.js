@@ -1,45 +1,68 @@
 import React, { useEffect, useState } from "react";
 import styles from "./cart.module.css";
 import Navbar from "./components/navbar";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import SoftButton from "components/SoftButton";
 import { Card } from "react-bootstrap";
 import Footer from "./components/footer";
 function Addtocart() {
-  const [savedCartProducts, setsavedCartProducts] = useState([]);
   const savedCartProduct = JSON.parse(localStorage.getItem("savedCartProduct")) || [];
+  const [savedCartProducts, setsavedCartProducts] = useState(savedCartProduct);
+  
+  const [updatedCart, setupdatedCart]= useState(savedCartProduct);
+  const [isupdatedCart, setIsupdatedcart]=useState(false);
   const navigate = useNavigate();
 
-  //product quantity
-  const initialQuantities = JSON.parse(localStorage.getItem("quantities")) || {};
+  const handleIncrement = (productId)=> {
+    console.log("hiii", productId)
+    const updatedCart = savedCartProducts.map((item)=>{
+      if(item.id===productId){
+        return{
+          ...item,
+          quantity: item.quantity+1,
+        };
+      }
+      return item;
+    })
+    console.log("kiiii", updatedCart)
+    setsavedCartProducts(updatedCart);
+    setupdatedCart(updatedCart);
+    setIsupdatedcart(true);
+    localStorage.setItem("savedCartProduct", JSON.stringify(updatedCart));
+    setIsupdatedcart(false);
+  }
+  const handleDecrement = (productId)=> {
+    const updatedCart = savedCartProducts.map((item)=>{
+      if(item.id===productId){
+        return{
+          ...item,
+          quantity: item.quantity-1,
+        };
+      }
+      return item;
+    })
+    setsavedCartProducts(updatedCart);
+    setupdatedCart(updatedCart);
+    setIsupdatedcart(true);
+    localStorage.setItem("savedCartProduct", JSON.stringify(updatedCart))
+    setIsupdatedcart(false);
+  }
+  
 
-  savedCartProduct.forEach((product) => {
-    if (initialQuantities[product.id] === undefined) {
-      initialQuantities[product.id] = 1;
-    }
-  });
-  const [quantities, setQuantities] = useState(initialQuantities);
-
-  const updateQuantity = (productId, newQuantity) => {
-    const updatedQuantities = { ...quantities, [productId]: newQuantity };
-    setQuantities(updatedQuantities);
-  };
-
-  useEffect(() => {
-    localStorage.setItem("quantities", JSON.stringify(quantities));
-  }, [quantities]);
+  
 
   // Remove a specific product from the cart
   const handleRemove = (productId) => {
     const updatedProducts = savedCartProduct.filter((product) => product.id !== productId);
     localStorage.setItem("savedCartProduct", JSON.stringify(updatedProducts));
+    setsavedCartProducts(updatedProducts);
   };
 
   //clear all product
   const handleRemo = () => {
     const updatedProducts = savedCartProducts.filter(product => product.id !== productId);
     localStorage.setItem('savedCartProduct', JSON.stringify(updatedProducts));
-    setsavedCartProducts(updatedProducts); // Update the state
+    setsavedCartProducts(updatedProducts);
   };
   return (
     <div>
@@ -76,9 +99,7 @@ function Addtocart() {
                         type="button"
                         style={{ height: "37px" }}
                         onClick={() => {
-                          if (quantities[product.id] > 1) {
-                            updateQuantity(product.id, quantities[product.id] - 1);
-                          }
+                            handleDecrement(product.id);
                         }}
                       >
                         <svg
@@ -94,16 +115,15 @@ function Addtocart() {
                       <input
                         className=" text-center"
                         style={{ width: "23%", height: "35px", backgroundColor: "white" }}
-                        placeholder=""
-                        value={quantities[product.id]}
-                        readOnly
+                        // placeholder={product.quantity}
+                        value={product.quantity || 1}
                       />
                       <button
                         className="btn btn-icon btn-light"
                         type="button"
                         style={{ height: "37px" }}
                         onClick={() => {
-                          updateQuantity(product.id, quantities[product.id] + 1);
+                          handleIncrement(product.id);
                         }}
                       >
                         <svg
@@ -118,7 +138,7 @@ function Addtocart() {
                       </button>
                     </div>
                     <div className="col">
-                      Rs.{product.price}
+                      Rs.{product.price*product.quantity}
                       <button className={styles.close} onClick={() => handleRemove(product.id)}>
                         <span className="close" style={{ color: "red" }}>
                           ✕
@@ -159,7 +179,7 @@ function Addtocart() {
                   <div className="col">TOTAL PRICE</div>
                   <div className="col text-right">€ 137.00</div>
                 </div>
-                <button className="btn">CHECKOUT</button>
+                <button className="btn"><Link to ='/shipping'> CHECKOUT </Link></button>
               </Card>
             </div>
           </div>

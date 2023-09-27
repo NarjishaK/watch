@@ -1,0 +1,43 @@
+.inpt{
+    border: none;
+    background-color: #ecebeba3;
+    border-radius: 16px;
+    width: 563px;
+    font-size: medium;
+    height: 55px;
+    padding-inline: 25px;
+}
+.div1{
+    background-color: #f7ecec;
+    color: #fff;
+    height: auto;
+    padding-bottom: 20px;
+    margin-top: 47px;
+    width: 489px;
+    margin-inline: 45px;
+}
+.summary{
+    font-size: larger;
+    font-family: monospace;
+    padding-top: 14px;
+}
+.selct{
+    width: 407px;
+    font-size: medium;
+    color: gray;
+    height: 40px;
+    padding-inline: 10px;
+}
+.shipping{
+    color: black;
+    font-size: small;
+    text-align: left;
+    padding-left: 41px;
+}
+.sub{
+    padding-left: 54px;
+    text-align: initial;
+}
+.sub1{
+    text-align: initial;
+}
