@@ -5,7 +5,7 @@ const CategoryModel = require('../models/categoryModel')
 exports.productcreate= asyncHandler(async(req,res)=>{
 
     try{
-        const {category,price,description,productname,brand}=req.body;
+        const {category,price,description,productname,brand,offerprice}=req.body;
         // const image =req.file.filename;
         const files = req.files;
         const image = files.map((file) => file.filename);
@@ -16,12 +16,14 @@ exports.productcreate= asyncHandler(async(req,res)=>{
             image:image,
             description:description,
             brand:brand,
+            offerprice:offerprice,
         })
         product.category=category;
         product.productname=productname;
         product.price=price;
         product.description=description;
         product.brand=brand;
+        product.offerprice=offerprice
         product.image=image;
         // if(req.file){
         //     product.image=req.file.filename
@@ -118,7 +120,7 @@ exports.deleteProduct = asyncHandler(async (req, res) => {
 
   exports.updateproduct =asyncHandler(async(req,res)=>{
     const {id}=req.params;
-    const {brand,productname,category,price,description}=req.body;
+    const {brand,productname,category,price,description,offerprice}=req.body;
     const files = req.files;
     const image = files.map((file) => file.filename);
     
@@ -132,6 +134,7 @@ exports.deleteProduct = asyncHandler(async (req, res) => {
       product.category=category;
       product.description=description;
       product.brand=brand;
+      product.offerprice=offerprice;
       if (files && files.length>0) {
         product.image = image;
       } 

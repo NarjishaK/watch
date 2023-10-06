@@ -91,6 +91,7 @@ const [selectedProduct, setSelectedProduct] = useState(null);
       id: products._id,
       productname: products.productname,
       price: products.price,
+      offerprice:products.offerprice,
       description: products.description,
       image:`http://localhost:8000/upload/${products.image[0]}`,
       category:products.category,
@@ -110,8 +111,10 @@ const [selectedProduct, setSelectedProduct] = useState(null);
 const handleAddcart = () => {
   const savedCartProduct = {
     id: products._id,
+    quantity: 1,
     productname: products.productname,
     price: products.price,
+    offerprice:products.offerprice,
     description: products.description,
     image:`http://localhost:8000/upload/${products.image[0]}`,
     category:products.category,

@@ -9,6 +9,7 @@ import { useEffect } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import fav from "../images/fav.jpg";
+import {BiLogOutCircle} from 'react-icons/bi'
 
 function navbar() {
   const [category, setCategory] = useState([]);
@@ -43,6 +44,9 @@ function navbar() {
   const handleProfile = () => {
     navigate("/profile-user");
   };
+  const handleLogout = () => {
+    localStorage.removeItem("userpage");
+  };
 
   return (
     <>
@@ -50,6 +54,7 @@ function navbar() {
         <nav id="main-navbar" className={styles.nav} role="navigation">
           <div id={styles.sec_nav} className=" cl-sm-4 cl-md-4 cl-lg-4 ">
             <div className={styles.sec1_nav}>
+              <BiLogOutCircle  className={styles.global}  onClick={handleLogout}/>
               <IoMdContact className={styles.global} onClick={handleProfile} />
               <p className={styles.international}>{users}</p>
             </div>

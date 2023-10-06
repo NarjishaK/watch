@@ -23,4 +23,7 @@ const storage = multer.diskStorage({
   router.post('/forgotpassword',UserController.forgotpassword);
   router.post('/getotp',UserController.getotp)
   router.post('/checkOTP',OtpController.checkOTP)
+  router.put('/updateuser/:id',upload.single("image"),UserController.updateuser);
+
+
   module.exports= router;

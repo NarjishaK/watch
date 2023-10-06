@@ -37,11 +37,13 @@ function whishlist() {
       id: product.id,
       productname: product.productname,
       price: product.price,
+      offerprice:product.offerprice,
       description: product.description,
       image: product.image,
       category: product.category,
+      quantity: 1,
     };
-  
+    console.log(savedCartProduct);
     const existingAddcart = JSON.parse(localStorage.getItem("savedCartProduct")) || [];
     const isProductAlreadyAdded = existingAddcart.some(
       (item) => item.id === savedCartProduct.id

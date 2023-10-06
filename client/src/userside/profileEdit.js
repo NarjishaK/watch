@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styles from './user.module.css'
 import SoftInput from 'components/SoftInput';
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 
 function profileEdit() {
@@ -16,7 +16,8 @@ function profileEdit() {
   const [pincode, setPincode] = useState("");
   const [image, setImage] = useState("");
   const { id } = useParams();
-  
+  const navigate = useNavigate("");
+
   useEffect(()=>{
     console.log(id)
     const fetchUser = async(e)=>{
@@ -41,6 +42,27 @@ function profileEdit() {
     };
     fetchUser();
   },[]);
+
+const handleUpdate=async(e)=>{
+  e.preventDefault();
+
+  const requestData ={username,userphone,useremail,password,address,country,dob,city,pincode,image};
+  try{
+    const response =await axios.put(`http://localhost:8000/user/updateuser/${id}`,requestData,{
+      headers:{
+        'Content-Type':'multipart/form-data',
+      },
+    });
+    console.log("1",response.data.userpage);
+    localStorage.setItem("userpage",JSON.stringify(response.data.userpage))
+    navigate('/profile-user')
+  }catch(err){
+    console.log(err)
+  }
+}
+  
+
+
 
   const handleImage = (e) => {
     const selectedImage = e.target.files[0];
@@ -166,11 +188,11 @@ function profileEdit() {
             </a>
             <br />
             <button
-            //   onClick={handleSignup}
+               onClick={handleUpdate}
               className={styles.button}
               style={{ backgroundColor: "#f9d7dc" }}
             >
-              Submit
+              Save
             </button>
           </form>
         </section>

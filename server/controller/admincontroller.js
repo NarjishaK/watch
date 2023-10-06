@@ -153,14 +153,9 @@ exports.changePassword = asyncHandler(async (req, res) => {
   const userId = req.params.id
    
   const { oldPassword, newPassword } = req.body;
-
-  
-
   try {
     const admin = await AdminLog.findById(userId);
-   
-
-    if (!admin) {
+       if (!admin) {
       return res.status(404).json({invalid:true, message: 'Admin not found' });
     }
 

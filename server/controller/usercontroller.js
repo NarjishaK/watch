@@ -71,7 +71,7 @@ exports.createuser = asyncHandler(async(req,res)=>{
       }
   });
 
-  // exports.userlist = asyncHandler(async (req, res) => {
+  // exports.userslist = asyncHandler(async (req, res) => {
   //   try {
   //     const user = await UserList.find();
   //     res.json(user);
@@ -113,6 +113,68 @@ exports.userediting =asyncHandler(async(req,res)=>{
     return res.status(500).json({ err: 'an error occurred' });
   }
 })
+
+
+exports.updateuser = asyncHandler(async(req,res)=>{
+  const{id}=req.params;
+  const {username,userphone,useremail,password,address,country,dob,city,pincode}= req.body;
+  try{
+    const user = await UserList.findById(id);
+    if(!user){
+      return res.status(404).json({err:'user not found'})
+    }
+    user.username =username;   
+    user.userphone =userphone;   
+    user.useremail = useremail;   
+    user.address = address;
+    user.country=country;
+    user.dob=dob;
+    user.city=city;
+    user.pincode=pincode;
+      if (req.file) {
+        user.image = req.file.filename;
+      } 
+    if(password){
+      user.password =await bcrypt.hash (password,10);
+
+    }
+    const updateusers = await user.save()
+    const userpage ={
+      id:user._id,
+      username:user.username,
+      userphone:user.userphone ,
+      address:user.address ,
+      country:user.country ,
+      dob:user.dob,
+      city:user.city,
+      pincode:user.pincode,
+      image:user.image,
+      useremail:user.useremail
+
+    }
+    res.json({message:'updated',userpage});
+  }catch(err){
+    console.log(err)
+    return res.status(500).json({err:'aan error occured'})
+  }
+})
+
+exports.admindelete =asyncHandler(async(req,res)=>{
+  const {id}= req.params;
+  try{
+    const admin = await AdminLog.findById(id);
+    if(!admin){
+      return res.status(404).json({err:'admin not found'})
+    }
+    await admin.deleteOne();
+    res.json({message:"delete successfully"})
+  }catch(err){
+    console.log(err);
+    return res.status(500).json({err:'an error occured'})
+  }
+})
+
+
 
 exports.getotp=asyncHandler(async(req,res)=>{
   const {useremail} =req.body;

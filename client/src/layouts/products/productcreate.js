@@ -67,7 +67,7 @@ function productcreate() {
            
         if (Object.keys(newValidationErrors).length > 0) {
           console.log("Validation errors:", newValidationErrors);
-          setValidationErrors(newValidationErrors); // This line sets the validation errors
+          setValidationErrors(newValidationErrors); 
           return;
         }
         else{
@@ -98,11 +98,7 @@ function productcreate() {
           );
           console.log(response.data);
           setValidationErrors({});
-          
-          // Log a message to verify that this code block is reached
           console.log("Navigating to /productlist");
-          
-          // Navigate to the "productlist" page after successful submission
           navigate("/productlist");
         } catch (err) {
           console.log(err);
